@@ -97,9 +97,6 @@ root.minsize(500, 300)
 
 # Detectar macOS para ajustes de estilo
 is_macos = platform.system().lower() == "darwin"
-if is_macos:
-    # Configurações específicas para macOS
-    root.configure(bg="#f0f0f0")
 
 frame = tk.Frame(root, padx=20, pady=20)
 frame.pack(fill="both", expand=True)
@@ -112,16 +109,8 @@ input_frame.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(0, 15))
 input_entry = tk.Entry(input_frame, width=50, font=("Arial", 9))
 input_entry.pack(side="left", fill="x", expand=True, padx=(0, 10))
 
-# Configurações de botão baseadas no sistema
-if is_macos:
-    browse_btn = tk.Button(input_frame, text="Selecionar", command=select_file, 
-                          font=("SF Pro Display", 9), relief="raised", borderwidth=1,
-                          bg="#007AFF", fg="white", activebackground="#0056CC", activeforeground="white",
-                          highlightbackground="#f0f0f0")
-else:
-    browse_btn = tk.Button(input_frame, text="Selecionar", command=select_file, 
-                          font=("Arial", 9), relief="solid", borderwidth=1,
-                          bg="#4CAF50", fg="white", activebackground="#45a049", activeforeground="white")
+# Botão selecionar - estilo simples e universal
+browse_btn = tk.Button(input_frame, text="Selecionar", command=select_file, font=("Arial", 9))
 browse_btn.pack(side="right")
 
 # Scene e Shot
@@ -165,16 +154,9 @@ def update_preview(*args):
 scene_entry.bind('<KeyRelease>', update_preview)
 shot_entry.bind('<KeyRelease>', update_preview)
 
-# Botão converter
-if is_macos:
-    convert_btn = tk.Button(frame, text="🎬 Converter para MP4", command=convert, 
-                           font=("SF Pro Display", 12, "bold"), pady=12, relief="raised", borderwidth=2,
-                           bg="#34C759", fg="white", activebackground="#30B350", activeforeground="white",
-                           highlightbackground="#f0f0f0")
-else:
-    convert_btn = tk.Button(frame, text="🎬 Converter para MP4", command=convert, 
-                           font=("Arial", 12, "bold"), pady=10, relief="solid", borderwidth=2,
-                           bg="#2196F3", fg="white", activebackground="#1976D2", activeforeground="white")
+# Botão converter - estilo simples e universal
+convert_btn = tk.Button(frame, text="🎬 Converter para MP4", command=convert, 
+                       font=("Arial", 12, "bold"), pady=10)
 convert_btn.grid(row=4, column=0, columnspan=2, sticky="ew")
 
 # Configurar grid weights para responsividade

@@ -1,0 +1,72 @@
+===============================================================================
+                    CONVERSOR MOV → MP4 - INSTRUÇÕES PARA macOS
+===============================================================================
+
+🍎 COMO DESBLOQUEAR O APLICATIVO NO macOS
+
+O macOS pode bloquear o aplicativo por questões de segurança. Isso é normal e 
+acontece com aplicativos baixados da internet que não foram assinados 
+digitalmente pela Apple. Siga os passos abaixo para usar o aplicativo:
+
+1. 🔍 ABRA O TERMINAL
+   - Pressione Cmd + Espaço
+   - Digite "Terminal" e pressione Enter
+
+2. 📁 NAVEGUE ATÉ A PASTA DO APLICATIVO
+   - Digite: cd Downloads
+   - Pressione Enter
+   - (Ajuste o caminho se baixou em outro local)
+
+3. 🔧 REMOVA A QUARENTENA
+   - Digite exatamente: sudo xattr -rd com.apple.quarantine mov2mp4-macos
+   - Pressione Enter
+   - Digite sua senha quando solicitado
+   - Pressione Enter novamente
+
+===============================================================================
+❓ POR QUE ISSO ACONTECE?
+===============================================================================
+
+O macOS tem um sistema de segurança chamado "Gatekeeper" que protege seu 
+computador de aplicativos maliciosos. Como este aplicativo foi criado por um 
+desenvolvedor independente e não foi assinado digitalmente pela Apple, o 
+sistema o bloqueia por precaução.
+
+Isso é completamente normal e seguro de desbloquear quando você confia no 
+aplicativo (como neste caso, onde o código fonte está disponível no GitHub).
+
+===============================================================================
+🎬 COMO USAR O APLICATIVO
+===============================================================================
+
+Após desbloquear:
+
+1. 📁 SELECIONE UM ARQUIVO MOV
+   - Clique em "Selecionar"
+   - Escolha seu arquivo .mov
+
+2. 🎯 DEFINA OS NÚMEROS
+   - Scene (Cena): Digite um número de 0 a 99 (ex: 5 vira 05)
+   - Shot (Plano): Digite um número de 0 a 9999 (ex: 123 vira 0123)
+
+3. 👀 VEJA O PREVIEW
+   - O nome do arquivo aparece automaticamente
+   - Exemplo: "Anim_sc05_sh0123.mp4"
+
+4. 🚀 CONVERTA
+   - Clique em "🎬 Converter para MP4"
+   - O arquivo MP4 será salvo na mesma pasta do arquivo original
+   
+===============================================================================
+📞 SUPORTE
+===============================================================================
+
+Se ainda tiver problemas:
+- Verifique se baixou a versão mais recente
+- Tente reiniciar o computador
+- Consulte o repositório no GitHub para mais informações
+
+===============================================================================
+                              Versão: 1.0
+                         Atualizado: Agosto 2024
+===============================================================================
