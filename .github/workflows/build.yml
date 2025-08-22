@@ -32,7 +32,7 @@ jobs:
     
     - name: Build with PyInstaller
       run: |
-        pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-macos main.py
+        pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-macos --target-architecture universal2 main.py
     
     - name: Create macOS bundle (macOS only)
       if: runner.os == 'macOS'
