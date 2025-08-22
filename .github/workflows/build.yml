@@ -40,6 +40,7 @@ jobs:
         mkdir -p "dist/mov2mp4.app/Contents/MacOS"
         mkdir -p "dist/mov2mp4.app/Contents/Resources"
         cp "dist/mov2mp4-macos" "dist/mov2mp4.app/Contents/MacOS/mov2mp4"
+        chmod +x "dist/mov2mp4-macos"
         chmod +x "dist/mov2mp4.app/Contents/MacOS/mov2mp4"
         
         cat > "dist/mov2mp4.app/Contents/Info.plist" << 'EOF'
