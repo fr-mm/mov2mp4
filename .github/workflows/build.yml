@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [macos-latest]
         python-version: [3.12]
 
     steps:
@@ -32,13 +32,7 @@ jobs:
     
     - name: Build with PyInstaller
       run: |
-        if [ "$RUNNER_OS" = "Linux" ]; then
-          pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-linux main.py
-        elif [ "$RUNNER_OS" = "macOS" ]; then
-          pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-macos main.py
-        elif [ "$RUNNER_OS" = "Windows" ]; then
-          pyinstaller --onefile --windowed --add-data "bin;bin" --name mov2mp4-windows main.py
-        fi
+        pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-macos main.py
     
     - name: Create macOS bundle (macOS only)
       if: runner.os == 'macOS'
@@ -78,10 +72,9 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: mov2mp4-${{ runner.os }}
+        name: mov2mp4-macOS
         path: |
           dist/
-          build/
         retention-days: 30
 
   release:
