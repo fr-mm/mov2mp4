@@ -41,7 +41,7 @@ def get_ffmpeg_path():
 
 def select_file():
     path = filedialog.askopenfilename(
-        title="Selecione um arquivo .mov",
+        title="Select a .mov file",
         filetypes=[("MOV files", "*.mov")]
     )
     if path:
@@ -51,31 +51,31 @@ def select_file():
 def convert():
     input_path = input_entry.get()
     if not input_path.lower().endswith(".mov"):
-        messagebox.showerror("Erro", "Selecione um arquivo .mov válido")
+        messagebox.showerror("Error", "Please select a valid .mov file")
         return
     
-    # Validar scene e shot
+    # Validate scene and shot
     try:
         scene = int(scene_entry.get())
         shot = int(shot_entry.get())
         
         if scene < 0 or scene > 99:
-            messagebox.showerror("Erro", "Scene deve ser um número entre 0 e 99")
+            messagebox.showerror("Error", "Scene must be a number between 0 and 99")
             return
             
         if shot < 0 or shot > 9999:
-            messagebox.showerror("Erro", "Shot deve ser um número entre 0 e 9999")
+            messagebox.showerror("Error", "Shot must be a number between 0 and 9999")
             return
             
     except ValueError:
-        messagebox.showerror("Erro", "Scene e Shot devem ser números válidos")
+        messagebox.showerror("Error", "Scene and Shot must be valid numbers")
         return
 
-    # Criar nome do arquivo com formato específico
-    scene_formatted = f"{scene:02d}"  # 2 dígitos com zero à esquerda
-    shot_formatted = f"{shot:04d}"   # 4 dígitos com zero à esquerda
+    # Create filename with specific format
+    scene_formatted = f"{scene:02d}"  # 2 digits with leading zero
+    shot_formatted = f"{shot:04d}"   # 4 digits with leading zero
     
-    # Obter diretório do arquivo original
+    # Get original file directory
     input_dir = os.path.dirname(input_path)
     output_filename = f"Anim_sc{scene_formatted}_sh{shot_formatted}.mp4"
     output_path = os.path.join(input_dir, output_filename)
@@ -86,34 +86,34 @@ def convert():
         subprocess.run([ffmpeg, "-y", "-i", input_path,
                         "-c:v", "libx264", "-c:a", "aac", output_path],
                        check=True)
-        messagebox.showinfo("Sucesso", f"Convertido: {output_filename}")
+        messagebox.showinfo("Success", f"Converted: {output_filename}")
     except Exception as e:
-        messagebox.showerror("Erro", str(e))
+        messagebox.showerror("Error", str(e))
 
 root = tk.Tk()
-root.title("Conversor MOV → MP4 - Animation")
+root.title("MOV → MP4 Converter - Animation")
 root.geometry("520x320")
 root.minsize(500, 300)
 
-# Detectar macOS para ajustes de estilo
+# Detect macOS for style adjustments
 is_macos = platform.system().lower() == "darwin"
 
 frame = tk.Frame(root, padx=20, pady=20)
 frame.pack(fill="both", expand=True)
 
-# Arquivo MOV
-tk.Label(frame, text="Arquivo MOV:", font=("Arial", 10, "bold")).grid(row=0, column=0, sticky="w", pady=(0, 5))
+# MOV File
+tk.Label(frame, text="MOV File:", font=("Arial", 10, "bold")).grid(row=0, column=0, sticky="w", pady=(0, 5))
 input_frame = tk.Frame(frame)
 input_frame.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(0, 15))
 
 input_entry = tk.Entry(input_frame, width=50, font=("Arial", 9))
 input_entry.pack(side="left", fill="x", expand=True, padx=(0, 10))
 
-# Botão selecionar - estilo simples e universal
-browse_btn = tk.Button(input_frame, text="Selecionar", command=select_file, font=("Arial", 9))
+# Select button - simple and universal style
+browse_btn = tk.Button(input_frame, text="Select", command=select_file, font=("Arial", 9))
 browse_btn.pack(side="right")
 
-# Scene e Shot
+# Scene and Shot
 numbers_frame = tk.Frame(frame)
 numbers_frame.grid(row=2, column=0, columnspan=2, sticky="ew", pady=(0, 20))
 
@@ -131,14 +131,14 @@ tk.Label(shot_frame, text="Shot (0000-9999):", font=("Arial", 10, "bold")).pack(
 shot_entry = tk.Entry(shot_frame, width=10, font=("Arial", 12), justify="center")
 shot_entry.pack(fill="x", pady=(5, 0))
 
-# Preview do nome
+# Filename preview
 preview_frame = tk.Frame(frame)
 preview_frame.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(0, 15))
-tk.Label(preview_frame, text="Nome do arquivo:", font=("Arial", 10, "bold")).pack(anchor="w")
+tk.Label(preview_frame, text="Filename:", font=("Arial", 10, "bold")).pack(anchor="w")
 preview_label = tk.Label(preview_frame, text="Anim_sc00_sh0000.mp4", font=("Arial", 11), fg="#666", bg="#f0f0f0", relief="sunken", padx=10, pady=5)
 preview_label.pack(fill="x", pady=(5, 0))
 
-# Função para atualizar preview
+# Function to update preview
 def update_preview(*args):
     try:
         scene = int(scene_entry.get() or 0)
@@ -150,16 +150,16 @@ def update_preview(*args):
     except ValueError:
         preview_label.config(text="Anim_sc00_sh0000.mp4")
 
-# Bind para atualizar preview quando os valores mudarem
+# Bind to update preview when values change
 scene_entry.bind('<KeyRelease>', update_preview)
 shot_entry.bind('<KeyRelease>', update_preview)
 
-# Botão converter - estilo simples e universal
-convert_btn = tk.Button(frame, text="🎬 Converter para MP4", command=convert, 
+# Convert button - simple and universal style
+convert_btn = tk.Button(frame, text="🎬 Convert to MP4", command=convert, 
                        font=("Arial", 12, "bold"), pady=10)
 convert_btn.grid(row=4, column=0, columnspan=2, sticky="ew")
 
-# Configurar grid weights para responsividade
+# Configure grid weights for responsiveness
 frame.grid_columnconfigure(0, weight=1)
 input_frame.grid_columnconfigure(0, weight=1)
 

@@ -34,41 +34,9 @@ jobs:
       run: |
         pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-macos --target-architecture universal2 main.py
     
-    - name: Create macOS bundle (macOS only)
-      if: runner.os == 'macOS'
+    - name: Set executable permissions
       run: |
-        mkdir -p "dist/mov2mp4.app/Contents/MacOS"
-        mkdir -p "dist/mov2mp4.app/Contents/Resources"
-        cp "dist/mov2mp4-macos" "dist/mov2mp4.app/Contents/MacOS/mov2mp4"
         chmod +x "dist/mov2mp4-macos"
-        chmod +x "dist/mov2mp4.app/Contents/MacOS/mov2mp4"
-        
-        cat > "dist/mov2mp4.app/Contents/Info.plist" << 'EOF'
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-        <plist version="1.0">
-        <dict>
-            <key>CFBundleExecutable</key>
-            <string>mov2mp4</string>
-            <key>CFBundleIdentifier</key>
-            <string>com.mov2mp4.converter</string>
-            <key>CFBundleName</key>
-            <string>MOV to MP4 Converter</string>
-            <key>CFBundleVersion</key>
-            <string>1.0</string>
-            <key>CFBundleShortVersionString</key>
-            <string>1.0</string>
-            <key>CFBundlePackageType</key>
-            <string>APPL</string>
-            <key>CFBundleSignature</key>
-            <string>????</string>
-            <key>LSMinimumSystemVersion</key>
-            <string>10.13</string>
-            <key>NSHighResolutionCapable</key>
-            <true/>
-        </dict>
-        </plist>
-        EOF
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -93,25 +61,10 @@ jobs:
       run: |
         mkdir -p release-assets
         
-        # Copy Linux build
-        if [ -f "artifacts/mov2mp4-Linux/dist/mov2mp4-linux" ]; then
-          cp "artifacts/mov2mp4-Linux/dist/mov2mp4-linux" "release-assets/mov2mp4-linux"
-          chmod +x "release-assets/mov2mp4-linux"
-        fi
-        
-        # Copy Windows build
-        if [ -f "artifacts/mov2mp4-Windows/dist/mov2mp4-windows.exe" ]; then
-          cp "artifacts/mov2mp4-Windows/dist/mov2mp4-windows.exe" "release-assets/mov2mp4-windows.exe"
-        fi
-        
-        # Copy macOS builds
+        # Copy macOS build (only the executable)
         if [ -f "artifacts/mov2mp4-macOS/dist/mov2mp4-macos" ]; then
           cp "artifacts/mov2mp4-macOS/dist/mov2mp4-macos" "release-assets/mov2mp4-macos"
           chmod +x "release-assets/mov2mp4-macos"
-        fi
-        
-        if [ -d "artifacts/mov2mp4-macOS/dist/mov2mp4.app" ]; then
-          cp -r "artifacts/mov2mp4-macOS/dist/mov2mp4.app" "release-assets/"
         fi
     
     - name: Upload release assets

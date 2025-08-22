@@ -1,0 +1,133 @@
+===============================================================================
+                    MOV → MP4 CONVERTER - macOS INSTRUCTIONS
+===============================================================================
+
+🍎 HOW TO UNLOCK THE APPLICATION ON macOS
+
+macOS may block the application for security reasons. This is normal and 
+happens with applications downloaded from the internet that have not been 
+digitally signed by Apple. Follow the steps below to use the application:
+
+===============================================================================
+📋 METHOD 1: USING SYSTEM PREFERENCES (EASIER)
+===============================================================================
+
+1. 📥 DOWNLOAD AND EXTRACT THE FILE
+   - Download the "mov2mp4-macOS.zip" file from GitHub
+   - Double-click to extract
+   - You will see the "mov2mp4-macos" file
+
+2. 🖱️ TRY TO OPEN THE APPLICATION
+   - Double-click on the "mov2mp4-macos" file
+   - macOS will show a blocking message
+   - Click "OK" to close the message
+
+3. ⚙️ GO TO SYSTEM PREFERENCES
+   - Click on the Apple menu (🍎) in the upper left corner
+   - Choose "System Preferences" (or "System Settings" on macOS 13+)
+   - Click on "Security & Privacy"
+
+4. 🔓 UNLOCK THE APPLICATION
+   - In the "General" tab, you will see a message like:
+     "mov2mp4-macos was blocked because it is from an unidentified developer"
+   - Click the "Open Anyway" button next to the message
+   - Enter your administrator password if requested
+   - Click "Open" in the confirmation window
+
+5. ✅ DONE!
+   - The application can now be run normally
+   - You only need to do this once
+
+===============================================================================
+📋 METHOD 2: USING TERMINAL (ALTERNATIVE)
+===============================================================================
+
+If Method 1 doesn't work, use Terminal:
+
+1. 🔍 OPEN TERMINAL
+   - Press Cmd + Space
+   - Type "Terminal" and press Enter
+
+2. 📁 NAVIGATE TO THE APPLICATION FOLDER
+   - Type: cd Downloads
+   - Press Enter
+   - (Adjust the path if downloaded to another location)
+
+3. 🔧 REMOVE QUARANTINE
+   - Type exactly: sudo xattr -rd com.apple.quarantine mov2mp4-macos
+   - Press Enter
+   - Enter your password when prompted
+   - Press Enter again
+
+4. 🔑 GIVE EXECUTION PERMISSION
+   - Type: chmod +x mov2mp4-macos
+   - Press Enter
+
+5. ✅ TEST THE APPLICATION
+   - Type: ./mov2mp4-macos
+   - Press Enter
+   - The application should open normally
+
+===============================================================================
+❓ WHY DOES THIS HAPPEN?
+===============================================================================
+
+macOS has a security system called "Gatekeeper" that protects your 
+computer from malicious applications. Since this application was created by an 
+independent developer and was not digitally signed by Apple, the 
+system blocks it as a precaution.
+
+This is completely normal and safe to unlock when you trust the 
+application (as in this case, where the source code is available on GitHub).
+
+===============================================================================
+🎬 HOW TO USE THE APPLICATION
+===============================================================================
+
+After unlocking:
+
+1. 📁 SELECT A MOV FILE
+   - Click "Select"
+   - Choose your .mov file
+
+2. 🎯 SET THE NUMBERS
+   - Scene: Enter a number from 0 to 99 (e.g., 5 becomes 05)
+   - Shot: Enter a number from 0 to 9999 (e.g., 123 becomes 0123)
+
+3. 👀 SEE THE PREVIEW
+   - The filename appears automatically
+   - Example: "Anim_sc05_sh0123.mp4"
+
+4. 🚀 CONVERT
+   - Click "🎬 Convert to MP4"
+   - The MP4 file will be saved in the same folder as the original file
+
+===============================================================================
+🔧 TROUBLESHOOTING
+===============================================================================
+
+❌ "Application won't open even after unlocking"
+   → Try Method 2 using Terminal
+
+❌ "CPU type error"
+   → Download the latest version from GitHub (universal support)
+
+❌ "FFmpeg not found"
+   → Make sure not to move the application to another folder
+
+❌ "Permission error"
+   → Run: chmod +x mov2mp4-macos in Terminal
+
+===============================================================================
+📞 SUPPORT
+===============================================================================
+
+If you still have problems:
+- Check if you downloaded the latest version
+- Try restarting the computer
+- Check the GitHub repository for more information
+
+===============================================================================
+                              Version: 1.0
+                         Updated: August 2024
+===============================================================================

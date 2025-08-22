@@ -1,173 +1,173 @@
-# Conversor MOV → MP4 - Animação
+# MOV → MP4 Converter - Animation
 
-Aplicativo GUI simples para converter arquivos MOV para MP4 usando FFmpeg, com sistema de nomenclatura específico para animação.
+Simple GUI application to convert MOV files to MP4 using FFmpeg, with specific naming system for animation workflows.
 
-## ✨ Funcionalidades
+## ✨ Features
 
-- 🎬 Converte arquivos MOV para formato MP4
-- 🎯 Sistema de nomenclatura para animação (Scene/Shot)
-- 🖥️ Suporte multiplataforma (Linux, macOS, Windows)
-- 🎨 Interface simples e intuitiva
-- ⚡ Conversão rápida usando FFmpeg
-- 🔄 Substituição automática de arquivos existentes
-- 📝 Preview do nome do arquivo em tempo real
+- 🎬 Convert MOV files to MP4 format
+- 🎯 Animation naming system (Scene/Shot)
+- 🖥️ Cross-platform support (Linux, macOS, Windows)
+- 🎨 Simple and intuitive interface
+- ⚡ Fast conversion using FFmpeg
+- 🔄 Automatic file replacement
+- 📝 Real-time filename preview
 
-## 📋 Requisitos
+## 📋 Requirements
 
-- Python 3.8 ou superior
-- FFmpeg (incluído no diretório `bin`)
+- Python 3.8 or higher
+- FFmpeg (included in the `bin` directory)
 
-## 🚀 Instalação
+## 🚀 Installation
 
-### Opção 1: Executar a partir do código fonte
+### Option 1: Run from source code
 
-1. Clone ou baixe este repositório
-2. Crie um ambiente virtual:
+1. Clone or download this repository
+2. Create a virtual environment:
    ```bash
    python -m venv venv
-   source venv/bin/activate  # No Windows: venv\Scripts\activate
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-3. Instale as dependências:
+3. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-4. Execute o aplicativo:
+4. Run the application:
    ```bash
    python main.py
    ```
 
-### Opção 2: Usar executável pré-compilado
+### Option 2: Use pre-built executable
 
-Baixe o executável apropriado para sua plataforma na página de releases.
+Download the appropriate executable for your platform from the releases page.
 
-## 🎬 Como Usar
+## 🎬 How to Use
 
-### Interface do Aplicativo
+### Application Interface
 
-1. **Selecionar Arquivo MOV**
-   - Clique em "Selecionar" para escolher seu arquivo .mov
+1. **Select MOV File**
+   - Click "Select" to choose your .mov file
 
-2. **Definir Scene e Shot**
-   - **Scene (Cena)**: Digite um número de 0 a 99 (ex: `5` vira `05`)
-   - **Shot (Plano)**: Digite um número de 0 a 9999 (ex: `123` vira `0123`)
+2. **Set Scene and Shot**
+   - **Scene**: Enter a number from 0 to 99 (e.g., `5` becomes `05`)
+   - **Shot**: Enter a number from 0 to 9999 (e.g., `123` becomes `0123`)
 
-3. **Preview do Nome**
-   - Veja como ficará o nome do arquivo: `Anim_sc05_sh0123.mp4`
+3. **Filename Preview**
+   - See how the filename will look: `Anim_sc05_sh0123.mp4`
 
-4. **Converter**
-   - Clique em "🎬 Converter para MP4"
-   - O arquivo será salvo na mesma pasta do arquivo original
+4. **Convert**
+   - Click "🎬 Convert to MP4"
+   - The file will be saved in the same folder as the original file
 
-### Exemplos de Nomenclatura
+### Naming Examples
 
-| Scene | Shot | Arquivo Final |
+| Scene | Shot | Final Filename |
 |-------|------|---------------|
 | 1 | 10 | `Anim_sc01_sh0010.mp4` |
 | 5 | 123 | `Anim_sc05_sh0123.mp4` |
 | 12 | 2 | `Anim_sc12_sh0002.mp4` |
 
-## 🔧 Compilação
+## 🔧 Building
 
-### Pré-requisitos
+### Prerequisites
 
 - Python 3.8+
-- PyInstaller (instalado automaticamente pelo script de build)
+- PyInstaller (installed automatically by the build script)
 
-### Build Local
+### Local Build
 
-1. Configure o projeto:
+1. Set up the project:
    ```bash
-   python setup_macos.py  # Baixa FFmpeg para diferentes plataformas
+   python setup_macos.py  # Downloads FFmpeg for different platforms
    ```
 
-2. Compile para sua plataforma atual:
+2. Build for your current platform:
    ```bash
    python build.py
    ```
 
-3. O executável será criado no diretório `dist`.
+3. The executable will be created in the `dist` directory.
 
-### Builds Multiplataforma
+### Cross-platform Builds
 
-Para compilar no Linux para outras plataformas, use o GitHub Actions:
+To build on Linux for other platforms, use GitHub Actions:
 
-1. Faça push do código para o GitHub
-2. O workflow do GitHub Actions compilará automaticamente para todas as plataformas
-3. Baixe os artefatos da aba Actions
+1. Push the code to GitHub
+2. The GitHub Actions workflow will automatically build for all platforms
+3. Download the artifacts from the Actions tab
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 mov2mp4/
-├── main.py                    # Aplicativo principal
-├── build.py                   # Script de compilação
-├── setup_macos.py             # Script de configuração multiplataforma
-├── requirements.txt           # Dependências Python
-├── instrucoes de desbloqueio.txt  # Instruções para macOS
-├── bin/                       # Binários do FFmpeg
-│   ├── ffmpeg-linux/          # FFmpeg para Linux
-│   └── ffmpeg-mac/            # FFmpeg para macOS
-├── .github/workflows/         # Workflows do GitHub Actions
-└── dist/                      # Saídas da compilação
+├── main.py                    # Main application
+├── build.py                   # Build script
+├── setup_macos.py             # Cross-platform setup script
+├── requirements.txt           # Python dependencies
+├── macos_unlock_instructions.txt  # macOS instructions
+├── bin/                       # FFmpeg binaries
+│   ├── ffmpeg-linux/          # FFmpeg for Linux
+│   └── ffmpeg-mac/            # FFmpeg for macOS
+├── .github/workflows/         # GitHub Actions workflows
+└── dist/                      # Build outputs
 ```
 
-## 🔨 Comandos de Compilação
+## 🔨 Build Commands
 
-### Build para Linux
+### Linux Build
 ```bash
 pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-linux main.py
 ```
 
-### Build para macOS
+### macOS Build
 ```bash
 pyinstaller --onefile --windowed --add-data "bin:bin" --name mov2mp4-macos --target-architecture universal2 main.py
 ```
 
-## 🔧 Solução de Problemas
+## 🔧 Troubleshooting
 
-### Erro de Permissão no macOS
-Se o aplicativo for bloqueado no macOS, consulte o arquivo `instrucoes de desbloqueio.txt` para instruções detalhadas sobre como desbloquear o aplicativo.
+### macOS Permission Error
+If the application is blocked on macOS, check the `macos_unlock_instructions.txt` file for detailed instructions on how to unlock the application.
 
-Método rápido via Terminal:
+Quick method via Terminal:
 ```bash
 sudo xattr -rd com.apple.quarantine mov2mp4-macos
 chmod +x mov2mp4-macos
 ```
 
-### Erro de Permissão no Linux
-Se receber um erro de permissão ao executar:
+### Linux Permission Error
+If you get a permission error when running:
 ```bash
 chmod +x dist/mov2mp4-linux
 ```
 
-### FFmpeg Não Encontrado
-Certifique-se de que os binários do FFmpeg estão na localização correta:
+### FFmpeg Not Found
+Make sure the FFmpeg binaries are in the correct location:
 - Linux: `bin/ffmpeg-linux/ffmpeg`
 - macOS: `bin/ffmpeg-mac/ffmpeg`
 
-### Problemas de Build Multiplataforma
-- Builds multiplataforma do Linux para macOS requerem os binários do FFmpeg da plataforma de destino
-- Use o script `setup_macos.py` para baixar os binários necessários
-- Para builds automatizados, use o workflow do GitHub Actions
+### Cross-platform Build Issues
+- Cross-platform builds from Linux to macOS require the target platform's FFmpeg binaries
+- Use the `setup_macos.py` script to download the required binaries
+- For automated builds, use the GitHub Actions workflow
 
-## 🤝 Contribuindo
+## 🤝 Contributing
 
-1. Faça fork do repositório
-2. Crie uma branch para sua funcionalidade
-3. Faça suas alterações
-4. Teste na plataforma de destino
-5. Submeta um pull request
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test on your target platform
+5. Submit a pull request
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Agradecimentos
+## 🙏 Acknowledgments
 
-- FFmpeg pelas capacidades de conversão de vídeo
-- PyInstaller pelo sistema de empacotamento
-- Tkinter pelo framework de interface gráfica
+- FFmpeg for video conversion capabilities
+- PyInstaller for the packaging system
+- Tkinter for the GUI framework
 
 ---
 
-**Desenvolvido para workflows de animação** 🎬✨
+**Built for animation workflows** 🎬✨
